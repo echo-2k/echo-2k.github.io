@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Echo2k">
+    <title>Echo2k</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="icon" type="image/png" href="media/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <div class="background-video">
+        <video autoplay loop muted></video>
+    </div>
+	<div class="language-switcher">
+		<button id="lang-ru" onclick="setLanguage('ru')">ru</button>
+		<button id="lang-en" onclick="setLanguage('en')">en</button>
+	</div>
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="main-content">
+                <div class="rectangle">
+                    <div class="content">
+                        <a href='' target='_blank'>
+                            <img class='avatar' src="media/komi-san.gif" alt='Avatar'>
+                        </a>
+                        <h1 class="nickname">Echo2k</h1>
+                        <div class="social-links social-links-rectangle">
+                            <a href="https://github.com/echo-2k" target="_blank" class="social">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://P0LACK.t.me/" target="_blank" class="social">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="https://lolz.live/members/8574612/" target="_blank" class="social">
+                                <img src="icons/lolz.svg" class="color-toggle">
+                            </a>                                                                                                    
+                        </div>
+                    </div>
+                </div>
+                <div class="spotifyplayer">
+                    <a href="https://github.com/echo-2k" class="spotifynow">
+                        <img src="https://spotify-8p69aysnt-tsprnay.vercel.app/api?theme=dark&scan=true&rainbow=true" alt="Current Spotify Song">
+                    </a>    
+                </div>
+            </div>
+            <div class="right-content">
+                <div class="rectangle-right">
+                    <h1 class="hithere" data-translate="project_title">Project</h1>
+                    <div id="project-info" class="project-info">
+                        <div class="project-title"></div>
+                        <div id="used"></div>
+                    </div>
+                    <div class="swiper-container side_panel">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" data-project-title="bml.ru" data-project-description="PHP Laravel, React.js, Not.js"><img src="media/image4.jpg" alt="Image 1"></div>
+                            <div class="swiper-slide" data-project-title="bmlfashion.com" data-project-description="PHP Laravel, React.js, Not.js"><img src="media/image5.jpg" alt="Image 2"></div>
+                            <div class="swiper-slide" data-project-title="Project 3" data-project-description="Project 3 Description"><img src="media/image3.jpg" alt="Image 3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="expand-button-right" class="rectangle-button-right">
+                    <i class="arrow fas fa-caret-right"></i>
+                </div>
+            </div>           
+            <div class="left-content">
+                <div class="rectangle-left">
+                    <h1 class="hithere" data-translate="about_me">About me</h1>
+                    <p class="about-me-description" data-translate="description">
+                        Я программист с опытом работы более 1 года в разработке веб-приложений. Моя специализация включает работу с PHP Laravel, Python, React.js и Node.js. Я стремлюсь создавать высококачественные и эффективные решения для клиентов, уделяя особое внимание деталям и пользовательскому опыту.
+                    </p>
+                    <div class="about-me-title" data-translate="about_me_title">Stack</div>
+                    <div class="tech-stack">
+                        <div data-translate="php_laravel"><i class="fas fa-circle"></i>&nbsp;PHP Laravel</div>
+                        <div data-translate="react"><i class="fas fa-circle"></i>&nbsp;React.js</div>
+                        <div data-translate="node"><i class="fas fa-circle"></i>&nbsp;Node.js</div>
+                        <div data-translate="js"><i class="fas fa-circle"></i>&nbsp;JS</div>
+                        <div data-translate="python"><i class="fas fa-circle"></i>&nbsp;Python</div>
+                        <div data-translate="html"><i class="fas fa-circle"></i>&nbsp;HTML</div>
+                        <div data-translate="css"><i class="fas fa-circle"></i>&nbsp;CSS</div>
+                    </div>
+                </div>
+                <div id="expand-button-left" class="rectangle-button-left">
+                    <i class="arrow-left fas fa-caret-left"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+<script>
+function updateProjectInfo(swiper) {
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    const projectTitle = activeSlide.getAttribute('data-project-title');
+    const projectDescription = activeSlide.getAttribute('data-project-description');
+
+    const titleElement = document.querySelector('#project-info .project-title');
+    const descriptionElement = document.querySelector('#project-info #used');
+
+    titleElement.textContent = projectTitle || 'No project title available';
+
+    descriptionElement.innerHTML = '';
+
+    if (projectDescription) {
+        const technologies = projectDescription.split(',').map(item => item.trim());
+        technologies.forEach(tech => {
+            const div = document.createElement('div');
+            div.innerHTML = `<i class="fas fa-circle"></i>&nbsp;${tech}`;
+            descriptionElement.appendChild(div);
+        });
+    } else {
+        descriptionElement.innerHTML = 'No project description available';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const swiperContainer = document.querySelector('.swiper-container');
+    
+    if (swiperContainer) {
+        var swiper = new Swiper(swiperContainer, {
+            loop: true,
+            spaceBetween: 10,
+            effect: 'coverflow',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            centeredSlides: true,
+            parallax: true,
+            slidesPerView: 'auto',
+            speed: 1000,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            on: {
+                init: function () {
+                    updateProjectInfo(this);
+                },
+                slideChange: function () {
+                    updateProjectInfo(this);
+                }
+            }
+        });
+    }
+});
+</script>
